@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sideNote</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <!-- ===== 顶栏 ===== -->
+  <header class="topbar">
+    <button id="btnMenu" class="icon-btn" title="文档列表" aria-label="文档列表">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div id="docTitle" class="doc-title" contenteditable="true" spellcheck="false" title="点击直接编辑名称">未命名</div>
+    <div class="topbar-actions">
+      <button id="btnNew" class="icon-btn" title="新建文档">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button id="btnPrev" class="icon-btn" title="上一篇">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M6 14l6-6 6 6"/></svg>
+      </button>
+      <button id="btnNext" class="icon-btn" title="下一篇">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M6 10l6 6 6-6"/></svg>
+      </button>
+      <button id="btnMore" class="icon-btn" title="更多">
+        <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="5" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="19" r="1.8" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== 文档元信息（创建时间 / 最后编辑时间） ===== -->
+  <div class="meta-bar">
+    <span id="pinBadge" class="pin-badge" hidden>📌 已置顶</span>
+    <span id="createdTime" class="meta-item" title="创建时间"></span>
+    <span class="meta-sep">·</span>
+    <span id="updatedTime" class="meta-item" title="最后编辑时间"></span>
+  </div>
+
+  <!-- ===== 编辑区 ===== -->
+  <main class="editor-wrap">
+    <textarea id="editor" placeholder="开始记录…" spellcheck="false"></textarea>
+    <div id="emptyState" class="empty-state" hidden>
+      <div class="empty-icon">📝</div>
+      <p>还没有文档</p>
+      <button id="btnEmptyNew" class="primary-btn">＋ 新建第一个文档</button>
+    </div>
+  </main>
+
+  <div id="saveHint" class="save-hint" hidden>已保存 ✓</div>
+
+  <!-- ===== 文档列表浮层 ===== -->
+  <div id="listOverlay" class="list-overlay" hidden>
+    <div class="list-panel">
+      <div class="list-header">
+        <label class="select-all-label" title="全选/取消全选">
+          <input type="checkbox" id="chkAll" />
+          <span>全选</span>
+        </label>
+        <span class="list-title">文档列表</span>
+        <button id="btnListNew" class="icon-btn" title="新建文档">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <button id="btnListClose" class="icon-btn" title="关闭">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div id="batchBar" class="batch-bar" hidden>
+        <span id="selCount" class="sel-count">已选 0 项</span>
+        <button id="btnBatchExport" class="batch-btn">⬇️ 导出</button>
+        <button id="btnBatchDelete" class="batch-btn danger">🗑️ 删除</button>
+      </div>
+      <div class="list-search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="15" height="15"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="listSearch" class="list-search" type="text" placeholder="搜索标题或内容…" />
+        <button id="btnSearchClear" class="search-clear" title="清空" hidden>✕</button>
+      </div>
+      <ul id="docList" class="doc-list"></ul>
+    </div>
+  </div>
+
+  <!-- ===== 更多菜单（⋮） ===== -->
+  <div id="moreMenu" class="more-menu" hidden>
+    <button id="menuPin" class="menu-item">📌 置顶 / 取消置顶</button>
+    <button id="menuExport" class="menu-item">⬇️ 导出为 .txt</button>
+    <button id="menuDelete" class="menu-item danger">🗑️ 删除文档</button>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

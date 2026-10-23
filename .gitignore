@@ -1,0 +1,10 @@
+# 打包产物
+*.zip
+
+# macOS
+.DS_Store
+
+# 编辑器
+.idea/
+.vscode/
+*.log
