@@ -36,7 +36,7 @@
 1. 下载或克隆本项目：
 
    ```bash
-   git clone https://github.com/<你的用户名>/sidenote.git
+   git clone https://github.com/Shuixingchen/sidenote.git
    ```
 
 2. 打开 Chrome，访问 `chrome://extensions`
